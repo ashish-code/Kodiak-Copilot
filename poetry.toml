@@ -1,0 +1,7 @@
+[virtualenvs]
+in-project = true
+
+[repositories]
+# TODO: Disable until all developers are migrated into AWS
+#[repositories.brightai]
+#url = "https://default-312851193143.d.codeartifact.us-west-2.amazonaws.com/pypi/pypi-frontend/simple"

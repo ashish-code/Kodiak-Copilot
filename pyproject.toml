@@ -1,0 +1,76 @@
+[tool.poetry]
+name = "brightai.template"
+version = "0.0.0"
+description = "An example package for repository templates"
+authors = []
+packages = [
+    { include = "brightai", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+## Add other source packages here
+
+[tool.poetry.group.dev.dependencies]
+coverage = "*"
+pytest = "*"
+pytest-black = "*"
+pytest-mypy = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+pytest-ruff = "*"
+ruff = "*"
+
+[tool.poetry.extras]
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+explicit_package_bases = true
+files = "src/,tests/"
+mypy_path = "src/"
+pretty = true
+show_error_codes = true
+error_summary = true
+namespace_packages = true
+
+[tool.poetry-dynamic-versioning]
+bump = true
+dirty = true
+enable = true
+style = "pep440"
+vcs = "git"
+
+[tool.poetry-dynamic-versioning.substitution]
+files = ["src/**/__version__.py"]
+patterns = ['''(^version\s*=\s*['\"])[^'\"]*(['\"])''']
+
+[tool.poetry.scripts]
+# TODO replace with your scripts to run from CLI
+bai-template = "brightai.template.main:main"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["src", "tests"]
+
+# TODO: Disable until all developers are migrated into AWS
+#[[tool.poetry.source]]
+#name = "brightai"
+#url = "https://default-312851193143.d.codeartifact.us-west-2.amazonaws.com/pypi/pypi-frontend/simple"
+#default = true
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+select = ["E", "F", "W", "I"]
+line-length = 120
+src = ["src", "tests"]
+unfixable = ["F841"]
+
+[tool.ruff.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["brightai"]
